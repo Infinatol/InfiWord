@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InfiWord</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Barre de menu (native ou html) -->
+  <nav class="menu-bar">
+    <div class="menu-item" id="menu-file">Fichier</div>
+    <div class="menu-item" id="menu-edit">Édition</div>
+    <!-- <div class="menu-item" id="menu-format">Format</div> -->
+    <div class="menu-item" id="menu-insert">Insertion</div>
+    <div class="menu-item" id="menu-help">Aide</div>
+    <div class="theme-toggle">
+      <button id="btn-theme" title="Basculer le thème">🌙 / ☀️</button>
+    </div>
+  </nav>
+
+  <!-- Menus déroulants -->
+  <div class="dropdown" id="dropdown-file" style="left: 10px;">
+    <button id="action-new">Nouveau</button>
+    <button id="action-open">Ouvrir...</button>
+    <button id="action-save">Sauvegarder...</button>
+    <button id="action-save-as">Sauvegarder sous...</button>
+    <hr>
+    <button id="action-export-pdf">Exporter en PDF...</button>
+    <button id="action-print">Imprimer...</button>
+  </div>
+  <div class="dropdown" id="dropdown-edit" style="left: 80px;">
+    <button id="action-undo">Annuler</button>
+    <button id="action-redo">Refaire</button>
+    <hr>
+    <button id="action-cut">Couper</button>
+    <button id="action-copy">Copier</button>
+    <button id="action-paste">Coller</button>
+    <hr>
+    <button id="action-find-replace">Rechercher / Remplacer...</button>
+  </div>
+  <div class="dropdown" id="dropdown-insert" style="left: 160px;">
+    <button id="action-insert-img">Image locale...</button>
+    <button id="action-insert-table">Tableau...</button>
+    <button id="action-insert-symbol">Caractères spéciaux...</button>
+  </div>
+  <div class="dropdown" id="dropdown-help" style="left: 240px;">
+    <button id="action-about">À propos d'InfiWord</button>
+  </div>
+
+  <div class="toolbar">
+    <select id="select-font" title="Police" class="tool-select">
+      <option value="Arial, sans-serif">Arial</option>
+      <option value="Times New Roman, serif">Times New Roman</option>
+      <option value="Courier New, monospace">Courier New</option>
+      <option value="Georgia, serif">Georgia</option>
+      <option value="Verdana, sans-serif">Verdana</option>
+      <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+    </select>
+
+    <select id="select-size" title="Taille" class="tool-select">
+      <option value="1">Très petit (10pt)</option>
+      <option value="2">Petit (13pt)</option>
+      <option value="3" selected>Normal (16pt)</option>
+      <option value="4">Moyen (18pt)</option>
+      <option value="5">Grand (24pt)</option>
+      <option value="6">Très grand (32pt)</option>
+      <option value="7">Énorme (48pt)</option>
+    </select>
+
+    <input type="color" id="color-text" title="Couleur du texte" class="tool-color" value="#000000">
+    <input type="color" id="color-bg" title="Couleur de surbrillance" class="tool-color" value="#ffffff">
+
+    <div class="separator"></div>
+
+    <button class="tool-btn" data-command="bold" title="Gras"><b>G</b></button>
+    <button class="tool-btn" data-command="italic" title="Italique"><i>I</i></button>
+    <button class="tool-btn" data-command="underline" title="Souligné"><u>U</u></button>
+    <button class="tool-btn" data-command="strikeThrough" title="Barré"><s>S</s></button>
+
+    <div class="separator"></div>
+
+    <button class="tool-btn" data-command="justifyLeft" title="Aligner à gauche">☰</button>
+    <button class="tool-btn" data-command="justifyCenter" title="Centrer">☲</button>
+    <button class="tool-btn" data-command="justifyRight" title="Aligner à droite">☷</button>
+    <button class="tool-btn" data-command="justifyFull" title="Justifier">▤</button>
+
+    <div class="separator"></div>
+
+    <button class="tool-btn" data-command="insertUnorderedList" title="Liste à puces">• Liste</button>
+    <button class="tool-btn" data-command="insertOrderedList" title="Liste numérotée">1. Liste</button>
+  </div>
+
+  <div class="main-content">
+    <div class="editor-container">
+      <div id="editor" class="editor" contenteditable="true" spellcheck="false"></div>
+    </div>
+  </div>
+
+  <!-- Modal Find/Replace -->
+  <div class="modal-overlay" id="modal-find">
+    <div class="modal">
+      <h3>Rechercher / Remplacer</h3>
+      <input type="text" id="find-text" placeholder="Rechercher...">
+      <input type="text" id="replace-text" placeholder="Remplacer par...">
+      <div class="modal-actions">
+        <button class="btn-cancel" id="btn-find-cancel">Fermer</button>
+        <button class="btn-ok" id="btn-find-next">Rechercher</button>
+        <button class="btn-ok" id="btn-replace">Remplacer</button>
+        <button class="btn-ok" id="btn-replace-all">Remplacer tout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Alert (About) -->
+  <div class="modal-overlay" id="modal-about">
+    <div class="modal">
+      <h3>InfiWord</h3>
+      <p>Logiciel de traitement de texte 100% local, développé avec Electron.</p>
+      <div class="modal-actions">
+        <button class="btn-ok" id="btn-about-close">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script commun -->
+  <script src="renderer.js"></script>
+</body>
+</html>

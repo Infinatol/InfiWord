@@ -1,0 +1,14 @@
+{
+  "name": "infiword",
+  "version": "1.0.0",
+  "description": "Logiciel de traitement de texte local et indépendant",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^41.0.0"
+  }
+}
